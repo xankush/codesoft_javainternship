@@ -9,8 +9,15 @@ class atm {
 
     }
 
-    void withdraw(int amount) {
-        balance -= amount;
+    void withdraw(int amount) throws InterruptedException {
+        if (amount < this.balance) {
+            balance -= amount;
+            Thread.sleep(1000);
+            System.out.println("cash withdraw succesfull...");
+        } else {
+            Thread.sleep(1000);
+            System.out.println("Not sufficient money");
+        }
     }
 
     int check_balance() {
@@ -33,10 +40,12 @@ class user extends atm {
         super.name = name;
         super.bank_account_no = bank_account_no;
         // print_detail();
-
+        System.out.println("");
         System.out.println("NAME OF ACCOUNT HOLDER: " + name);
         System.out.println("BANK ACCOUNT NUMBER : " + bank_account_no);
+        System.out.println("");
         System.out.println("CURRENT BANK BALANCE : " + balance);
+        System.out.println("");
 
     }
 
@@ -45,7 +54,7 @@ class user extends atm {
 public class atminterface {
     public static boolean exit = false;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("welcome !\nEnjoy our atm services\n");
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of account holder");
@@ -59,6 +68,11 @@ public class atminterface {
 
         // atm welcome screen
         while (exit == false) {
+            for (int i = 0; i < 50; i++) {
+
+                System.out.print("-");
+            }
+            System.out.println("\n");
             System.out.println("PRESS 1 -> for checking bank balance\n");
             System.out.println("PRESS 2 -> for deposit the amount \n");
             System.out.println("PRESS 3 -> for withdraw the amount \n");
@@ -82,29 +96,35 @@ class function {
     }
 
     void waiting(Scanner sc) {
-        System.out.println("Press c to go to main menu...");
+        System.out.println("");
+        System.out.println("Enter a key  to go to main menu...");
         sc.next();
     }
 
-    public void perform_function(int choice, Scanner sc) {
+    public void perform_function(int choice, Scanner sc) throws InterruptedException {
         switch (choice) {
             case 1:
+                Thread.sleep(1000);
                 System.out.println("Your bank balance is :\n" + user1.check_balance());
                 waiting(sc);
                 break;
             case 2:
                 System.out.println("Enter the cash amount to deposit");
                 int deposit_cash = sc.nextInt();
-                user1.deposit(deposit_cash);
+                System.out.println("\n");
                 System.out.println("cash deposited successfull");
+                user1.deposit(deposit_cash);
+                Thread.sleep(1000);
                 System.out.println("Your current bank balance is " + user1.check_balance());
                 waiting(sc);
                 break;
             case 3:
                 System.out.println("Enter the cash amount to withdraw");
                 int withdraw_cash = sc.nextInt();
+                System.out.println("\n");
+
                 user1.withdraw(withdraw_cash);
-                System.out.println("cash withdraw succesfull...");
+
                 System.out.println("Your current bank balance is " + user1.check_balance());
                 waiting(sc);
                 break;
