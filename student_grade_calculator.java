@@ -3,9 +3,10 @@ import java.util.Scanner;
 class student {
     int score;
 
-    public student(String name, int id) {
-        System.out.printf("| NAME %18s %22s %1s\n",":",name,"|");
-        System.out.printf("| STUDENT's ID %10s %22d %1s\n",":",id,"|");
+    public student(String name, int id) throws Exception {
+        System.out.printf(" NAME %18s %22s \n", ":", name);
+        Thread.sleep(1000);
+        System.out.printf(" STUDENT's ID %10s %22d \n", ":", id);
     }
 
     int total_marks(int[] score) {
@@ -36,11 +37,11 @@ class student {
     }
 }
 
-public class task2 {
-    public static void main(String[] args) {
+public class student_grade_calculator {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("-> Enter the name of student");
-        String name =  sc.nextLine();
+        String name = sc.nextLine();
         System.out.println("-> Enter the id of student");
         int id = sc.nextInt();
         System.out.print("-> Number of subjects: ");
@@ -53,20 +54,22 @@ public class task2 {
             score[i] = sc.nextInt();
         }
         System.out.println("   ");
-        for(int i =0;i<50;i++){
+        for (int i = 0; i < 50; i++) {
             System.out.print("-");
         }
-        System.out.println("");
+        System.out.println("\n");
         student s = new student(name, id);
-        
+
         // displaying output
-        
-        System.out.printf("| TOTAL MARKS  %10s %22d %1s\n",":", s.total_marks(score),"|");
-        System.out.printf("| PERCENTAGE  %11s %22.2f %1s\n",":", s.avg_percentage(s.total_marks(score), n),"|");
-        System.out.printf("| GRADE %17s %22s %1s",":",s.grade(s.avg_percentage(s.total_marks(score), n)),"|");
-        
+        Thread.sleep(1000);
+        System.out.printf(" TOTAL MARKS  %10s %22d \n", ":", s.total_marks(score));
+        Thread.sleep(1000);
+        System.out.printf(" PERCENTAGE  %11s %22.2f \n", ":", s.avg_percentage(s.total_marks(score), n));
+        Thread.sleep(1000);
+        System.out.printf(" GRADE %17s %22s", ":", s.grade(s.avg_percentage(s.total_marks(score), n)));
+
         System.out.println("");
-        for(int i =0;i<50;i++){
+        for (int i = 0; i < 50; i++) {
             System.out.print("-");
         }
     }
