@@ -2,8 +2,13 @@ import java.util.Scanner;
 
 class student {
     int score;
+    String name;
+    int id;
 
     public student(String name, int id) throws Exception {
+        this.name = name;
+        this.id = id;
+        
         System.out.printf(" NAME %18s %22s \n", ":", name);
         Thread.sleep(1000);
         System.out.printf(" STUDENT's ID %10s %22d \n", ":", id);
